@@ -24,7 +24,7 @@ public class Circolo {
 	@Column(nullable=false)
 	private String indirizzo;
 	
-	@Column(nullable=false)
+	@Column
 	private String recapito;
 	
 	@Column(nullable=false)

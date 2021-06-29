@@ -22,7 +22,7 @@ public class Campo {
 	@Column(nullable=false)
 	private String numeroCampo;
 	
-	@Column(nullable=false)
+	@Column
 	private String terreno;
 	
 	@Column(nullable=false)
