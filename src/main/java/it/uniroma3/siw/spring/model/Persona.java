@@ -14,7 +14,7 @@ import javax.persistence.OneToMany;
 
 @Entity
 @NamedQuery(name = "findAllUtenti", query = "SELECT a FROM Utente a")
-public class Utente {
+public class Persona {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,7 +41,7 @@ public class Utente {
 	@ManyToOne
 	private Circolo circolo;
 	
-	@OneToMany(mappedBy="utente")
+	@OneToMany(mappedBy="persona")
 	private List<Prenotazione> listaPrenotazioni;
 
 	public String getNome() {
@@ -128,7 +128,7 @@ public class Utente {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Utente other = (Utente) obj;
+		Persona other = (Persona) obj;
 		if (codiceFiscale == null) {
 			if (other.codiceFiscale != null)
 				return false;

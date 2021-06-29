@@ -31,7 +31,7 @@ public class Prenotazione {
 	private Maestro maestro;
 	
 	@ManyToOne
-	private Utente utente;
+	private Persona persona;
 	
 	@ManyToOne
 	private Campo campo;
@@ -60,11 +60,11 @@ public class Prenotazione {
 	public void setMaestro(Maestro maestro) {
 		this.maestro = maestro;
 	}
-	public Utente getUtente() {
-		return utente;
+	public Persona getPersona() {
+		return persona;
 	}
-	public void setUtente(Utente utente) {
-		this.utente = utente;
+	public void setPersona(Persona persona) {
+		this.persona = persona;
 	}
 	public Campo getCampo() {
 		return campo;
