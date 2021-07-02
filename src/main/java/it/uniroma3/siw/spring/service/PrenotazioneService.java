@@ -38,7 +38,7 @@ public class PrenotazioneService {
 	
 	@Transactional
 	public boolean alreadyExists(Prenotazione prenotazione) {
-		List<Prenotazione> prenotazioni = this.prenotazioneRepository.findByData(prenotazione.getData(),prenotazione.getOraInizio(),prenotazione.getOraFine());
+		List<Prenotazione> prenotazioni = this.prenotazioneRepository.findByDataAndOraInizioAndOraFine(prenotazione.getData(),prenotazione.getOraInizio(),prenotazione.getOraFine());
 		if (prenotazioni.size() > 0)
 			return true;
 		else 

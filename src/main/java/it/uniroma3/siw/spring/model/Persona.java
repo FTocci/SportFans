@@ -13,7 +13,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 @Entity
-@NamedQuery(name = "findAllUtenti", query = "SELECT a FROM Utente a")
+@NamedQuery(name = "findAllUtenti", query = "SELECT a FROM Persona a")
 public class Persona {
 	
 	@Id

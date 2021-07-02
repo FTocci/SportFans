@@ -24,7 +24,7 @@ public class CircoloService {
 	
 	@Transactional
 	public List<Circolo> circoloPerNome(String nome) {
-		return circoloRepository.findByNome(nome);
+		return circoloRepository.findByNomeCircolo(nome);
 	}
 
 	@Transactional
@@ -43,7 +43,7 @@ public class CircoloService {
 
 	@Transactional
 	public boolean alreadyExists(Circolo circolo) {
-		List<Circolo> circoli = this.circoloRepository.findByNomeAndIndirizzo(circolo.getNomeCircolo(), circolo.getIndirizzo());
+		List<Circolo> circoli = this.circoloRepository.findByNomeCircoloAndIndirizzo(circolo.getNomeCircolo(), circolo.getIndirizzo());
 		if (circoli.size() > 0)
 			return true;
 		else 
