@@ -11,5 +11,5 @@ public interface PrenotazioneRepository extends CrudRepository<Prenotazione, Lon
 
 	public List<Prenotazione> findById(String idPrenotazione);
 	
-	public List<Prenotazione> findByData(LocalDate data);
+	public List<Prenotazione> findByData(LocalDate data, int oraInizio, int oraFine);
 }
