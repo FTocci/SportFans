@@ -1,6 +1,7 @@
 package it.uniroma3.siw.spring.authentication;
 
 import static it.uniroma3.siw.spring.model.Credentials.ADMIN_ROLE;
+
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
