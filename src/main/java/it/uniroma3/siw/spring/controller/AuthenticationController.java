@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import it.uniroma3.siw.spring.model.Credentials;
 import it.uniroma3.siw.spring.model.User;
 import it.uniroma3.siw.spring.service.CredentialsService;
+import it.uniroma3.siw.spring.service.UserService;
 
 @Controller
 public class AuthenticationController {
@@ -48,8 +49,12 @@ public class AuthenticationController {
         
     	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     	Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+    	User o=credentials.getUser();
     	model.addAttribute("credentials", credentials);
-        return "home";
+        if(o.getCircolo()==null)
+        	return "home1";	//senzaCircolo
+        else
+        	return "home2";
     }
     
     @RequestMapping(value = "/index", method = RequestMethod.GET)
@@ -73,7 +78,6 @@ public class AuthenticationController {
         // validate user and credentials fields
         this.userValidator.validate(user, userBindingResult);
         this.credentialsValidator.validate(credentials, credentialsBindingResult);
-
         // if neither of them had invalid contents, store the User and the Credentials into the DB
         if(!userBindingResult.hasErrors() && ! credentialsBindingResult.hasErrors()) {
             // set the user and store the credentials;
