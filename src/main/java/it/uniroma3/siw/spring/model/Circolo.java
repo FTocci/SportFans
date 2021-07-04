@@ -31,7 +31,7 @@ public class Circolo {
 	private String email;
 	
 	@OneToMany(mappedBy="circolo")
-	private List<Persona> persone;
+	private List<User> persone;
 	
 	@OneToMany(mappedBy="circolo")
 	private List<Maestro> maestri;
@@ -71,11 +71,11 @@ public class Circolo {
 		this.email = email;
 	}
 
-	public List<Persona> getPersone() {
+	public List<User> getPersone() {
 		return persone;
 	}
 
-	public void setPersone(List<Persona> persone) {
+	public void setPersone(List<User> persone) {
 		this.persone = persone;
 	}
 
