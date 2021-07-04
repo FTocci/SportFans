@@ -30,6 +30,14 @@ public class UserValidator implements Validator {
             errors.rejectValue("cognome", "required");
         else if (cognome.length() < MIN_NAME_LENGTH || cognome.length() > MAX_NAME_LENGTH)
             errors.rejectValue("cognome", "size");
+        
+        if (user.getCodiceFiscale().isEmpty())
+            errors.rejectValue("codFiscale", "required");
+        if (user.getEmail().isEmpty())
+            errors.rejectValue("email", "required");
+        if (user.getRecapito().isEmpty())
+            errors.rejectValue("recapito", "required");
+        System.out.println(errors);
     }
 
     @Override
