@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Circoli</title>
+</head>
+
+<body>
+	<nav>
+		<p>INTERNATIONAL MUSEUM</p>
+	</nav>
+	<div class="contenuto">
+		<h4>List of Circoli</h4>
+		<ul>
+			<li th:each="circolo : ${circoli}">
+				<a href="circolo.html" th:href="@{'/circolo' + '/' + ${circolo.id}}" th:text="${circolo.nomeCircolo}"></a>
+			</li>
+		</ul>
+	</div>
+
+</body>
+
+</html>
