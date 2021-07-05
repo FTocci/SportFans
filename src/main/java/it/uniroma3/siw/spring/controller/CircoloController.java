@@ -1,6 +1,8 @@
 package it.uniroma3.siw.spring.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -8,8 +10,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.siw.spring.model.Circolo;
+import it.uniroma3.siw.spring.model.Credentials;
+import it.uniroma3.siw.spring.model.User;
 import it.uniroma3.siw.spring.service.CircoloService;
 
 @Controller
@@ -51,4 +56,25 @@ public class CircoloController {
         }
         return "circoloForm.html";
     }
+    
+    @RequestMapping(value = "/iscrizioneCircolo", method = RequestMethod.GET)
+    public String iscrizioneCircolo(@ModelAttribute("circolo") Circolo circolo, 
+    		 							BindingResult bindingResult, Model model) {
+    	model.addAttribute("circoli", this.circoloService.tutti());
+    	return "iscrizioneCircolo.html";
+    }
+    
+    @RequestMapping(value = "/selezionaCircolo", method = RequestMethod.POST)
+    public String selezionaCircolo(@RequestParam("circolo") Long idCircolo, Model model) {
+    	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Credentials credentials = circoloService.getCredentialsService().getCredentials(userDetails.getUsername());
+    	User o = credentials.getUser();
+    	Circolo c = circoloService.circoloPerId(idCircolo);
+    	o.setCircolo(c);
+    	circoloService.getUserService().saveUser(o);
+    	
+    	return "home2.html";
+    }
+    
+    
 }

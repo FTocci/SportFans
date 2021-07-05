@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
+import org.springframework.web.bind.annotation.ModelAttribute;
+
 @Entity
 @NamedQuery(name = "findAllCircoli", query = "SELECT a FROM Circolo a")
 public class Circolo {
@@ -97,6 +99,11 @@ public class Circolo {
 
 	public long getId() {
 		return id;
+	}
+	
+	@ModelAttribute(value = "circolo")
+	public Circolo getCircolo() {
+		return this;
 	}
 
 	@Override

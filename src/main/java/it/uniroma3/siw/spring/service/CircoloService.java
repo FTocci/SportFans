@@ -17,6 +17,12 @@ public class CircoloService {
 	@Autowired
 	private CircoloRepository circoloRepository; 
 	
+	@Autowired
+	private CredentialsService credentialsService; 
+	
+	@Autowired
+	private UserService userService;
+	
 	@Transactional
 	public Circolo inserisci(Circolo circolo) {
 		return circoloRepository.save(circolo);
@@ -49,4 +55,23 @@ public class CircoloService {
 		else 
 			return false;
 	}
+
+	public CredentialsService getCredentialsService() {
+		return credentialsService;
+	}
+
+	public void setCredentialsService(CredentialsService credentialsService) {
+		this.credentialsService = credentialsService;
+	}
+
+	public UserService getUserService() {
+		return userService;
+	}
+
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
+	
+	
+	
 }
