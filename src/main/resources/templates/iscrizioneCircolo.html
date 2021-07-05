@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link th:href="@{/css/basic.css}" rel="stylesheet">
+
+<head>
+    <title>Iscrizione al Circolo</title>
+</head>
+
+<body>
+    <p>Iscrizione</p>
+
+
+    <div>
+        <form th:action="@{/selezionaCircolo}" method="POST" th:object="${circolo}"> 
+            <select name="circolo" roleId="circolo" id="circolo" th:field="*{circolo}">
+                <option value="">---Circolo---</option>
+                <option th:each="circolo : ${circoli}" th:value="${circolo.id}" th:text="${circolo.nomeCircolo}">
+                </option>
+            </select>
+            <span><button type="submit">Iscriviti</button></span>
+        </form>
+    </div>
+</body>
+
+</html>

@@ -1,13 +1,22 @@
 <html xmlns:th="http://www.thymeleaf.org">
-    <head>
-        
-    </head>
-    <body>
-        <div>
-            Iscriviti a un circolo
+<link rel="stylesheet">
+
+
+<head>
+    <title>Login</title>
+</head>
+
+<body>
+    <p style="text-align: center; font-size: 40px;">SportFans</p>
+    <br>
+    <div style="display:flex; width: 1100px; margin-left: 280px;">
+        <div style="margin-right: 50px;">
+            <a href="/iscrizioneCircolo"> <img src="/images/IscrizioneCircolo.jpg"></img></a>
         </div>
-        <div>
-            I circoli
+        <div style="margin-left: 50px;">
+            <a th:href="@{/circolo}"> <img src="/images/Circoli.jpg"></img></a>
         </div>
-    </body>
+    </div>
+</body>
+
 </html>
