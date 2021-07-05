@@ -51,6 +51,7 @@ public class AuthenticationController {
     	Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
     	User o=credentials.getUser();
     	model.addAttribute("credentials", credentials);
+    	model.addAttribute("utente", o);
         if(o.getCircolo()==null)
         	return "home1";	//senzaCircolo
         else
