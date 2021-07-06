@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Campi</title>
+</head>
+
+<body>
+
+	<div style="margin-top: 30px; margin-left: 480px;">
+		<img src="/images/logo.png"></img>
+	</div>
+	<div style="text-align: center; margin-top: 20px;">
+		<div style="font-weight: bold;">
+			<h1>Campi del <span th:text="${utente.circolo.nomeCircolo}"></span></h1>
+		</div>
+		<section>
+			<div  style="font-weight: bold; margin-bottom: 15px; background-color: brown;" th:each="campo : ${campi}">
+				Numero campo: <span th:text="*{campo.numeroCampo}">qui-va-numeroCampo</span><br>
+				Terreno: <span th:text="*{campo.terreno}">qui-va-terreno</span><br>
+				Sport: <span th:text="*{campo.sport}">qui-va-sport</span><br>
+				Prezzo orario: <span th:text="*{campo.prezzoOrario}">qui-va-prezzoOrario</span><br>
+			</div>
+		</section> 
+		<div>
+			<span th:if="${credentials.role == 'ADMIN'}"><a href="/addCampo"><button>+</button></a></span>
+		</div>
+	</div>
+
+</body>
+
+</html>

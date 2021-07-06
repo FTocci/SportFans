@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Aggiungi Campo</title>
+</head>
+
+<body>
+    <header></header>
+    <div style="text-align: center; margin-top: 5%;">
+        <form th:action="@{/campo}" method="POST">
+            <h4>Aggiungi Campo</h4>
+            <section>
+                <div class="form-group">
+                    <input type="text" required th:field="*{campo.numeroCampo}" placeholder="Numero Campo">
+                    <span th:if="${#fields.hasErrors('campo.numeroCampo')}" th:errors="${campo.numeroCampo}"></span>
+                </div>
+                <div class="form-group">
+                    <input type="text" required th:field="*{campo.terreno}" placeholder="Terreno">
+                    <span th:if="${#fields.hasErrors('campo.terreno')}" th:errors="*{campo.terreno}"></span>
+                </div>
+                <div class="form-group">
+                    <input type="text" required th:field="*{campo.sport}" placeholder="Sport">
+                    <span th:if="${#fields.hasErrors('campo.sport')}" th:errors="*{campo.sport}"></span>
+                </div>
+                <div class="form-group">
+                    <input type="text" th:field="*{campo.prezzoOrario}" placeholder="prezzoOrario">
+                    <span th:if="${#fields.hasErrors('campo.prezzoOrario')}" th:errors="*{campo.prezzoOrario}"></span>
+                </div>
+
+                <span style="margin-top:10px;">
+                    <button style="border-radius: 10px 10px 10px 10px; width:100px; height: 40px;" type="submit">
+                        Registrati
+                    </button>
+                </span>
+            </section>
+        </form>
+    </div>
+    <footer></footer>
+</body>
+
+</html>
