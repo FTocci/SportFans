@@ -11,15 +11,16 @@
 		<img src="/images/logo.png"></img>
 	</div>
 	<div style="text-align: center; margin-top: 20px;">
-		<div style="font-weight: bold;">
-			<h1>Campi del <span th:text="${utente.circolo.nomeCircolo}"></span></h1>
+		<div style="font-weight: bold; font-size: 20px;">
+			<p>Campi del <span th:text="${utente.circolo.nomeCircolo}"></span></p>
 		</div>
 		<section>
-			<div  style="font-weight: bold; margin-bottom: 15px; background-color: brown;" th:each="campo : ${campi}">
+			<div  style="font-weight: bold; margin-bottom: 15px; background-color: gray; margin:0 auto; width: 1000px;" th:each="campo : ${campi}">
 				Numero campo: <span th:text="*{campo.numeroCampo}">qui-va-numeroCampo</span><br>
 				Terreno: <span th:text="*{campo.terreno}">qui-va-terreno</span><br>
 				Sport: <span th:text="*{campo.sport}">qui-va-sport</span><br>
-				Prezzo orario: <span th:text="*{campo.prezzoOrario}">qui-va-prezzoOrario</span><br>
+				Prezzo orario: <span th:text="*{campo.prezzoOrario}">qui-va-prezzoOrario</span>
+				<p></p>
 			</div>
 		</section> 
 		<div>

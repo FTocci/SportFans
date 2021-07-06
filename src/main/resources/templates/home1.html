@@ -6,7 +6,7 @@
 
 <body>
     <div style="text-align: center;">
-        <img style="height: 75px;" src="/images/logo.png"></img>
+        <img style="height: 75px; margin-top: 10px;" src="/images/logo.png"></img>
     </div>
     <br>
     <div style="display:flex; width: 1100px; margin-left: 280px;">
@@ -17,9 +17,9 @@
             <a th:href="@{/circolo}"> <img src="/images/Circoli.jpg"></img></a>
         </div>
     </div>
-    <div style="margin-top: 15px; text-align: center;">
+    <div style="margin-top: 30px; text-align: center;">
         <form th:action="@{/logout}" method="POST">
-            <button class="btn btn-primary">Logout</button>
+            <button class="btn btn-secondary">Logout</button>
         </form>
     </div>
 </body>

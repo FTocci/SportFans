@@ -10,7 +10,7 @@
             <p><b>Ciao </b><span th:text="${credentials.username}">qui-va-username</span>!</p>
             <p><b>Appartieni al circolo: </b><span th:text="${utente.circolo.nomeCircolo}">qui-va-circolo</span>!</p>
             <form th:action="@{/disiscrizioneCircolo}" method="POST">
-                <button class="btn btn-primary">Disiscriviti</button>
+                <button class="btn btn-secondary">Disiscriviti</button>
             </form>
         </div>
         <br>
@@ -26,7 +26,7 @@
 
         <div style="text-align: center; margin-top: 20px;">
             <form th:action="@{/logout}" method="POST">
-                <button class="btn btn-primary">Logout</button>
+                <button class="btn btn-secondary">Logout</button>
             </form>
         </div>
     </body>

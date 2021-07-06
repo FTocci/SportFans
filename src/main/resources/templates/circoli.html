@@ -16,11 +16,12 @@
 			<h4>Qui troverai una lista di circoli di cui potresti diventare un membro:</h4>
 		</div>
 		<section>
-			<div  style="font-weight: bold; margin-bottom: 15px; background-color: brown;" th:each="circolo : ${circoli}">
+			<div  style="font-weight: bold; margin-bottom: 15px; background-color: gray;  margin:0 auto; width: 1000px;" th:each="circolo : ${circoli}">
 				Nome: <span th:text="*{circolo.nomeCircolo}">qui-va-titolo</span><br>
 				Indirizzo: <span th:text="*{circolo.indirizzo}">qui-va-indirizzo</span><br>
 				Email: <span th:text="*{circolo.email}">qui-va-email</span><br>
-				Recapito: <span th:text="*{circolo.recapito}">qui-va-recapito</span><br>
+				Recapito: <span th:text="*{circolo.recapito}">qui-va-recapito</span>
+				<p></p>
 			</div>
 		</section> 
 		<div>
