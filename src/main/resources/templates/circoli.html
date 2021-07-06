@@ -23,6 +23,9 @@
 				Recapito: <span th:text="*{circolo.recapito}">qui-va-recapito</span><br>
 			</div>
 		</section> 
+		<div>
+			<span th:if="${credentials.role == 'ADMIN'}"><a href="/addCircolo"><button>+</button></a></span>
+		</div>
 	</div>
 
 </body>

@@ -1,5 +1,6 @@
 package it.uniroma3.siw.spring.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.uniroma3.siw.spring.model.Campo;
+import it.uniroma3.siw.spring.model.Circolo;
 import it.uniroma3.siw.spring.repository.CampoRepository;
 
 @Service
@@ -16,6 +18,9 @@ public class CampoService {
 	
 	@Autowired
 	private CampoRepository campoRepository; 
+	
+	@Autowired
+	private CredentialsService credentialsService; 
 	
 	@Transactional
 	public Campo inserisci(Campo campo) {
@@ -49,4 +54,26 @@ public class CampoService {
 		else 
 			return false;
 	}
+	
+	@Transactional
+	public List<Campo> filtraPerCircolo(Circolo c) {
+		List<Campo> campi = new ArrayList<>();
+		for(Campo campo: this.tutti()) {
+			if(campo.getCircolo().equals(c)) {
+				campi.add(campo);
+			}
+		}
+		return campi;
+	}
+		
+	
+	public CredentialsService getCredentialsService() {
+		return credentialsService;
+	}
+
+	public void setCredentialsService(CredentialsService credentialsService) {
+		this.credentialsService = credentialsService;
+	}
+	
+	
 }
