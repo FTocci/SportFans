@@ -25,6 +25,7 @@ public class CircoloValidator implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nomeCircolo", "required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "indirizzo", "required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "recapito", "required");
 		
 		if (!errors.hasErrors()) {
 			logger.debug("confermato: valori non nulli");
