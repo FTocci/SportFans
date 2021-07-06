@@ -1,6 +1,8 @@
 package it.uniroma3.siw.spring.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -10,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import it.uniroma3.siw.spring.model.Campo;
+import it.uniroma3.siw.spring.model.Circolo;
+import it.uniroma3.siw.spring.model.Credentials;
 import it.uniroma3.siw.spring.service.CampoService;
 
 @Controller
@@ -34,21 +38,32 @@ public class CampoController {
     	return "campo.html";
     }
 
-    @RequestMapping(value = "/campo", method = RequestMethod.GET)
+    @RequestMapping(value = "/getCampo", method = RequestMethod.GET)
     public String getCampi(Model model) {
-    		model.addAttribute("campi", this.campoService.tutti());
-    		return "campi.html";
+    	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    	Credentials credentials = campoService.getCredentialsService().getCredentials(userDetails.getUsername());
+    	Circolo c=credentials.getUser().getCircolo();
+    	model.addAttribute("utente", credentials.getUser());
+    	model.addAttribute("credentials", credentials);
+    	model.addAttribute("campi", this.campoService.filtraPerCircolo(c));
+    	return "campi.html";
     }
     
     @RequestMapping(value = "/campo", method = RequestMethod.POST)
     public String newCampo(@ModelAttribute("campo") Campo campo, 
     									Model model, BindingResult bindingResult) {
+    	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    	Credentials credentials = campoService.getCredentialsService().getCredentials(userDetails.getUsername());
+    	Circolo c=credentials.getUser().getCircolo();
+    	campo.setCircolo(c);
+    	model.addAttribute("utente", credentials.getUser());
+    	model.addAttribute("credentials", credentials);
     	this.campoValidator.validate(campo, bindingResult);
         if (!bindingResult.hasErrors()) {
         	this.campoService.inserisci(campo);
-            model.addAttribute("persone", this.campoService.tutti());
-            return "persone.html";
+            model.addAttribute("campi", this.campoService.filtraPerCircolo(c));
+            return "campi.html";
         }
-        return "personaForm.html";
+        return "campoForm.html";
     }
 }

@@ -26,6 +26,7 @@ public class CampoValidator implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "numeroCampo", "required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "sport", "required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "prezzoOrario", "required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "terreno", "required");
 
 		if (!errors.hasErrors()) {
 			logger.debug("confermato: valori non nulli");
