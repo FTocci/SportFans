@@ -112,7 +112,7 @@ public class User {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Persona other = (Persona) obj;
+		User other = (User) obj;
 		if (codiceFiscale == null) {
 			if (other.getCodiceFiscale() != null)
 				return false;
