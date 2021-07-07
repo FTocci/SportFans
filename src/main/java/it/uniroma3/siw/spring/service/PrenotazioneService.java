@@ -17,6 +17,9 @@ public class PrenotazioneService {
 	@Autowired
 	private PrenotazioneRepository prenotazioneRepository; 
 	
+	@Autowired
+	private CampoService campoService; 
+	
 	@Transactional
 	public Prenotazione inserisci(Prenotazione prenotazione) {
 		return prenotazioneRepository.save(prenotazione);
@@ -44,5 +47,15 @@ public class PrenotazioneService {
 		else 
 			return false;
 	}
+
+	public CampoService getCampoService() {
+		return campoService;
+	}
+
+	public void setCampoService(CampoService campoService) {
+		this.campoService = campoService;
+	}
+	
+	
 	
 }

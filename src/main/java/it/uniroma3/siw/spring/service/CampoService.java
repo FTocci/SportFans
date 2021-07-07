@@ -1,5 +1,6 @@
 package it.uniroma3.siw.spring.service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import it.uniroma3.siw.spring.model.Campo;
 import it.uniroma3.siw.spring.model.Circolo;
+import it.uniroma3.siw.spring.model.Prenotazione;
 import it.uniroma3.siw.spring.repository.CampoRepository;
 
 @Service
@@ -65,8 +67,17 @@ public class CampoService {
 		}
 		return campi;
 	}
-		
 	
+	@Transactional
+	public boolean IsDisponibile(Campo c, LocalDate data, int oraInizio, int oraFine) {
+		for(Prenotazione p: c.getPrenotazioni()) {
+			if(p.getCampo()==c && p.getData()==data && p.getOraInizio()==oraInizio && p.getOraFine()==oraFine) {
+				return false;
+			}
+		}
+		return true;
+	}
+		
 	public CredentialsService getCredentialsService() {
 		return credentialsService;
 	}
