@@ -5,11 +5,12 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
+import it.uniroma3.siw.spring.model.Campo;
 import it.uniroma3.siw.spring.model.Prenotazione;
 
 public interface PrenotazioneRepository extends CrudRepository<Prenotazione, Long> {
 
 	public List<Prenotazione> findById(String idPrenotazione);
 	
-	public List<Prenotazione> findByDataAndOraInizioAndOraFine(LocalDate data, int oraInizio, int oraFine);
+	public List<Prenotazione> findByDataAndOraInizioAndOraFineAndCampo(LocalDate data, int oraInizio, int oraFine,Campo c);
 }

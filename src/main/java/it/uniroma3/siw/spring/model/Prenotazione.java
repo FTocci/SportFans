@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @NamedQuery(name = "findAllPrenotazione", query = "SELECT a FROM Prenotazione a")
 public class Prenotazione {
@@ -18,6 +20,7 @@ public class Prenotazione {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@Column(nullable=false)
 	private LocalDate data;
 

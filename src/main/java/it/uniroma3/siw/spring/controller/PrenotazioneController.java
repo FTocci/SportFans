@@ -1,6 +1,8 @@
 package it.uniroma3.siw.spring.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -9,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import it.uniroma3.siw.spring.model.Circolo;
+import it.uniroma3.siw.spring.model.Credentials;
 import it.uniroma3.siw.spring.model.Prenotazione;
 import it.uniroma3.siw.spring.service.PrenotazioneService;
 
@@ -25,6 +29,12 @@ public class PrenotazioneController {
     @RequestMapping(value="/addPrenotazione", method = RequestMethod.GET)
     public String addPrenotazione(Model model) {
     	model.addAttribute("prenotazione", new Prenotazione());
+    	
+    	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    	Credentials credentials = prenotazioneService.getCredentialsService().getCredentials(userDetails.getUsername());
+    	Circolo c=credentials.getUser().getCircolo();
+    	
+    	model.addAttribute("campi", prenotazioneService.getCampoService().filtraPerCircolo(c));
         return "prenotazioneForm.html";
     }
 
@@ -36,25 +46,32 @@ public class PrenotazioneController {
 
     @RequestMapping(value = "/prenotazione", method = RequestMethod.GET)
     public String getPrenotazioni(Model model) {
-    		model.addAttribute("prenotazioni", this.prenotazioneService.tutti());
+    		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        	Credentials credentials = prenotazioneService.getCredentialsService().getCredentials(userDetails.getUsername());
+    		model.addAttribute("prenotazioni", this.prenotazioneService.prenotazioniPerUser(credentials.getUser()));
+        	model.addAttribute("credentials", credentials);
     		return "prenotazioni.html";
     }
     
     @RequestMapping(value = "/prenotazione", method = RequestMethod.POST)
     public String newPrenotazione(@ModelAttribute("prenotazione") Prenotazione prenotazione, 
     									Model model, BindingResult bindingResult) {
+    	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    	Credentials credentials = prenotazioneService.getCredentialsService().getCredentials(userDetails.getUsername());
+    	model.addAttribute("credentials", credentials);
+    	
     	this.prenotazioneValidator.validate(prenotazione, bindingResult);
         if (!bindingResult.hasErrors()) {
-        	if(prenotazioneService.getCampoService().IsDisponibile(prenotazione.getCampo(), 
-        					prenotazione.getData(), prenotazione.getOraInizio(), prenotazione.getOraFine())) {
-        	this.prenotazioneService.inserisci(prenotazione);
-            model.addAttribute("prenotazioni", this.prenotazioneService.tutti());
-            return "prenotazioni.html";
-        	}else {
-        		return "prenotazioneErrore.html";
+        		prenotazione.setPersona(credentials.getUser());
+        		this.prenotazioneService.inserisci(prenotazione);
+        		model.addAttribute("prenotazioni", this.prenotazioneService.prenotazioniPerUser(credentials.getUser()));
+        		return "prenotazioni.html";
         	}
-        }
-        return "prenotazioneForm.html";
+        if(bindingResult.hasFieldErrors())
+            model.addAttribute("errore", "Dati inseriti non validi");
+        else
+            model.addAttribute("errore", "il campo risulta essere occupato");
+        return "prenotazioneErrore.html";
     }
      
 }
