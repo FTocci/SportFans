@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Campi</title>
+</head>
+
+<body>
+
+	<div style="margin-top: 30px; margin-left: 480px;">
+		<img src="/images/logo.png"></img>
+	</div>
+	<div style="text-align: center; margin-top: 20px;">
+		<div style="font-weight: bold; font-size: 20px;">
+			<p>Le tue prenotazioni</p>       <!-- <span th:text="${utente.nome}"></span>  -->
+		</div>
+		<section>
+			<div  style="font-weight: bold; margin-bottom: 15px; background-color: gray; margin:0 auto; width: 1000px;" th:each="prenotazione : ${prenotazioni}">
+				Data: <span th:text="*{prenotazione.data}">qui-va-numeroCampo</span><br>
+				Orario di inizio <span th:text="*{prenotazione.oraInizio}">qui-va-terreno</span><br>
+				Orario di fine <span th:text="*{prenotazione.oraFine}">qui-va-sport</span><br>
+				<p></p>
+			</div>
+		</section> 
+		<div>
+			<!-- <span th:if="${credentials.role == 'ADMIN'}"> -->  <a href="/addPrenotazione"><button>+</button></a> <!--</span> -->
+		</div>
+	</div>
+
+</body>
+
+</html>

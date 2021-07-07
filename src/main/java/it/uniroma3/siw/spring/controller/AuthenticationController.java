@@ -39,10 +39,10 @@ public class AuthenticationController {
 		return "loginForm";
 	}
 	
-	@RequestMapping(value = "/logout", method = RequestMethod.GET) 
-	public String logout(Model model) {
-		return "index";
-	}
+//	@RequestMapping(value = "/logout", method = RequestMethod.GET) 
+//	public String logout(Model model) {
+//		return "index";
+//	}
 	
     @RequestMapping(value = "/default", method = RequestMethod.GET)
     public String defaultAfterLogin(Model model) {
@@ -51,6 +51,7 @@ public class AuthenticationController {
     	Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
     	User o=credentials.getUser();
     	model.addAttribute("credentials", credentials);
+    	model.addAttribute("utente", o);
         if(o.getCircolo()==null)
         	return "home1";	//senzaCircolo
         else

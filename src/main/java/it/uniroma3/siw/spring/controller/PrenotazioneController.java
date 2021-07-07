@@ -45,10 +45,16 @@ public class PrenotazioneController {
     									Model model, BindingResult bindingResult) {
     	this.prenotazioneValidator.validate(prenotazione, bindingResult);
         if (!bindingResult.hasErrors()) {
+        	if(prenotazioneService.getCampoService().IsDisponibile(prenotazione.getCampo(), 
+        					prenotazione.getData(), prenotazione.getOraInizio(), prenotazione.getOraFine())) {
         	this.prenotazioneService.inserisci(prenotazione);
             model.addAttribute("prenotazioni", this.prenotazioneService.tutti());
             return "prenotazioni.html";
+        	}else {
+        		return "prenotazioneErrore.html";
+        	}
         }
         return "prenotazioneForm.html";
     }
+     
 }

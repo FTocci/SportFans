@@ -41,13 +41,22 @@ public class CircoloController {
 
     @RequestMapping(value = "/circolo", method = RequestMethod.GET)
     public String getCircoli(Model model) {
-    		model.addAttribute("circoli", this.circoloService.tutti());
-    		return "circoli.html";
+    	
+    	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    	Credentials credentials = circoloService.getCredentialsService().getCredentials(userDetails.getUsername());
+    	model.addAttribute("credentials", credentials);
+    	model.addAttribute("circoli", this.circoloService.tutti());
+    	return "circoli.html";
     }
     
     @RequestMapping(value = "/circolo", method = RequestMethod.POST)
     public String newCircolo(@ModelAttribute("circolo") Circolo circolo, 
     									Model model, BindingResult bindingResult) {
+    	
+    	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    	Credentials credentials = circoloService.getCredentialsService().getCredentials(userDetails.getUsername());
+    	model.addAttribute("credentials", credentials);
+    	
     	this.circoloValidator.validate(circolo, bindingResult);
         if (!bindingResult.hasErrors()) {
         	this.circoloService.inserisci(circolo);
@@ -60,6 +69,13 @@ public class CircoloController {
     @RequestMapping(value = "/iscrizioneCircolo", method = RequestMethod.GET)
     public String iscrizioneCircolo(@ModelAttribute("circolo") Circolo circolo, 
     		 							BindingResult bindingResult, Model model) {
+    	
+    	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    	Credentials credentials = circoloService.getCredentialsService().getCredentials(userDetails.getUsername());
+    	User o=credentials.getUser();
+    	model.addAttribute("credentials", credentials);
+    	model.addAttribute("utente", o);
+    	
     	model.addAttribute("circoli", this.circoloService.tutti());
     	return "iscrizioneCircolo.html";
     }
@@ -72,8 +88,21 @@ public class CircoloController {
     	Circolo c = circoloService.circoloPerId(idCircolo);
     	o.setCircolo(c);
     	circoloService.getUserService().saveUser(o);
-    	
+    	model.addAttribute("credentials", credentials);
+    	model.addAttribute("utente", o);
     	return "home2.html";
+    }
+    
+    @RequestMapping(value = "/disiscrizioneCircolo", method = RequestMethod.POST)
+    public String disiscrivitiDaCircolo(Model model) {
+    	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Credentials credentials = circoloService.getCredentialsService().getCredentials(userDetails.getUsername());
+    	User o = credentials.getUser();
+    	o.setCircolo(null);
+    	circoloService.getUserService().saveUser(o);
+    	model.addAttribute("credentials", credentials);
+    	model.addAttribute("utente", o);
+    	return "home1.html";
     }
     
     

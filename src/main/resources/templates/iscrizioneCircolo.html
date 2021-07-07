@@ -9,6 +9,9 @@
 </head>
 
 <body>
+    <div style="text-align: center;">
+        <img style="height: 75px;" src="/images/logo.png"></img>
+    </div>
     <div style="text-align: center; font-size: 30px;">
         <div style="margin-top: 20px; font-weight: bold; margin-right: 90px;">
             <p>Iscrizione ad un circolo</p>
@@ -20,11 +23,10 @@
                 <select style="width: 35%; margin-left: 30%; text-align: center; " class="form-select" multiple
                     aria-label="multiple select example" name="circolo" roleId="circolo" id="circolo"
                     th:field="*{circolo}">
-                    <option value="">---Circolo---</option>
                     <option th:each="circolo : ${circoli}" th:value="${circolo.id}" th:text="${circolo.nomeCircolo}">
                     </option>
                 </select>
-                <div style="margin-top: 50px; margin-right: 90px;"><button type="submit" class="btn btn-primary"> Iscriviti </button></div>
+                <div style="margin-top: 50px; margin-right: 90px;"><button type="submit" class="btn btn-secondary"> Iscriviti </button></div>
             </form>
         </div>
     </div>

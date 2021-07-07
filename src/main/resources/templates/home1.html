@@ -1,13 +1,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
-<link rel="stylesheet">
-
-
 <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Login</title>
 </head>
 
 <body>
-    <p style="text-align: center; font-size: 40px;">SportFans</p>
+    <div style="text-align: center;">
+        <img style="height: 75px; margin-top: 10px;" src="/images/logo.png"></img>
+    </div>
     <br>
     <div style="display:flex; width: 1100px; margin-left: 280px;">
         <div style="margin-right: 50px;">
@@ -16,6 +16,11 @@
         <div style="margin-left: 50px;">
             <a th:href="@{/circolo}"> <img src="/images/Circoli.jpg"></img></a>
         </div>
+    </div>
+    <div style="margin-top: 30px; text-align: center;">
+        <form th:action="@{/logout}" method="POST">
+            <button class="btn btn-secondary">Logout</button>
+        </form>
     </div>
 </body>
 

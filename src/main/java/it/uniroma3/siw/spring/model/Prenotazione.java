@@ -79,7 +79,9 @@ public class Prenotazione {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + ((campo == null) ? 0 : campo.hashCode());
+		result = prime * result + ((data == null) ? 0 : data.hashCode());
+		result = prime * result + oraInizio;
 		return result;
 	}
 	@Override
@@ -91,9 +93,21 @@ public class Prenotazione {
 		if (getClass() != obj.getClass())
 			return false;
 		Prenotazione other = (Prenotazione) obj;
-		if (id != other.id)
+		if (campo == null) {
+			if (other.campo != null)
+				return false;
+		} else if (!campo.equals(other.campo))
+			return false;
+		if (data == null) {
+			if (other.data != null)
+				return false;
+		} else if (!data.equals(other.data))
+			return false;
+		if (oraInizio != other.oraInizio)
 			return false;
 		return true;
 	}
+	
+	
 	
 }
