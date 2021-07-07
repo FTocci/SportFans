@@ -18,7 +18,6 @@ public class PrenotazioneValidator implements Validator {
 	@Autowired
 	private PrenotazioneService prenotazioneService;
 
-
     private static final Logger logger = LoggerFactory.getLogger(PrenotazioneValidator.class);
 	
 	@Override

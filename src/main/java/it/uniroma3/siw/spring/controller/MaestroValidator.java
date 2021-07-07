@@ -18,7 +18,7 @@ public class MaestroValidator implements Validator {
 	@Autowired
 	private MaestroService maestroService;
 	
-    private static final Logger logger = LoggerFactory.getLogger(PersonaValidator.class);
+    private static final Logger logger = LoggerFactory.getLogger(MaestroValidator.class);
 
 	@Override
 	public void validate(Object o, Errors errors) {

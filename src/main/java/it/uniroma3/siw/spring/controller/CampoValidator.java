@@ -19,7 +19,7 @@ public class CampoValidator implements Validator {
 	private CampoService campoService;
 
 
-    private static final Logger logger = LoggerFactory.getLogger(PersonaValidator.class);
+    private static final Logger logger = LoggerFactory.getLogger(CampoValidator.class);
 	
 	@Override
 	public void validate(Object o, Errors errors) {

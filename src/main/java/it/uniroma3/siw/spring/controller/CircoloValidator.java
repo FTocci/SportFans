@@ -18,7 +18,7 @@ public class CircoloValidator implements Validator {
 	@Autowired
 	private CircoloService circoloService;
 	
-    private static final Logger logger = LoggerFactory.getLogger(PersonaValidator.class);
+    private static final Logger logger = LoggerFactory.getLogger(CircoloValidator.class);
 
 	@Override
 	public void validate(Object o, Errors errors) {
