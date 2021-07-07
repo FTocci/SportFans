@@ -15,13 +15,14 @@
 			<p>Campi del <span th:text="${utente.circolo.nomeCircolo}"></span></p>
 		</div>
 		<section>
-			<div  style="font-weight: bold; margin-bottom: 15px; background-color: gray; margin:0 auto; width: 1000px;" th:each="campo : ${campi}">
+			<div style="padding-top:7px; font-weight: bold; margin-bottom: 15px; background-color: lightgray; margin:0 auto; width: 1000px;" th:each="campo : ${campi}">
 				Numero campo: <span th:text="*{campo.numeroCampo}">qui-va-numeroCampo</span><br>
 				Terreno: <span th:text="*{campo.terreno}">qui-va-terreno</span><br>
 				Sport: <span th:text="*{campo.sport}">qui-va-sport</span><br>
 				Prezzo orario: <span th:text="*{campo.prezzoOrario}">qui-va-prezzoOrario</span>
-				<p></p>
+				<div style="height: 20px; background-color: white;"></div>
 			</div>
+			
 		</section> 
 		<div>
 			<span th:if="${credentials.role == 'ADMIN'}"><a href="/addCampo"><button>+</button></a></span>
