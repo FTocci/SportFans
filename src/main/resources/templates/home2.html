@@ -26,11 +26,11 @@
             <a href="/prenotazione"> <img src="/images/prenotaUnCampo.jpg"></img></a>
         </div>
     </div>
-    <span th:if="${credentials.role=='ADMIN'}">
+    <div style="text-align: center; margin-top: 20px;" th:if="${credentials.role=='ADMIN'}">
         <a href="/addMaestro">
-            <button style="text-align: center;" class="btn btn-secondary">aggiungiMaestro</button>
+            <button class="btn btn-secondary">aggiungiMaestro</button>
         </a>
-    </span>
+    </div>
 
     <div style="text-align: center; margin-top: 20px;">
         <form th:action="@{/logout}" method="POST">
