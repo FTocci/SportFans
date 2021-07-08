@@ -15,6 +15,7 @@
 <body>
     <header></header>
     <div style="text-align: center; margin-top: 5%;">
+        <span th:if="${credentials.role == 'ADMIN'}">
         <form th:action="@{/circolo}" method="POST">
             <h4 style="font-size: 40px;">Aggiungi Circolo</h4>
             <section>
@@ -45,6 +46,8 @@
                 </span>
             </section>
         </form>
+        </span>
+        <span th:if="${credentials.role == 'DEFAULT'}">PURTROPPO NON GODI DEI PERMESSI PER ACCEDERE ALLA RISORSA</span>
     </div>
     <footer></footer>
 </body>
