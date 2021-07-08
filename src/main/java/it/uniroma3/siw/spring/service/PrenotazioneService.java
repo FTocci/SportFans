@@ -20,7 +20,10 @@ public class PrenotazioneService {
 	private PrenotazioneRepository prenotazioneRepository; 
 	
 	@Autowired
-	private CampoService campoService; 
+	private CampoService campoService;
+	
+	@Autowired
+	private MaestroService maestroService;
 	
 	@Autowired
 	private CredentialsService credentialsService;
@@ -77,6 +80,14 @@ public class PrenotazioneService {
 
 	public void setCredentialsService(CredentialsService credentialsService) {
 		this.credentialsService = credentialsService;
+	}
+
+	public MaestroService getMaestroService() {
+		return maestroService;
+	}
+
+	public void setMaestroService(MaestroService maestroService) {
+		this.maestroService = maestroService;
 	}
 	
 	

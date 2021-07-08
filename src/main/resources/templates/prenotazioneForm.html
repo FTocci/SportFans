@@ -35,11 +35,17 @@
                     <input style="height:40px; width:30%; border-radius: 74px; text-align: center;" type="number" min="11" max="24" required th:field="*{prenotazione.oraFine}" placeholder="Orario di fine" value="11">
                     <span th:if="${#fields.hasErrors('prenotazione.oraFine')}" th:errors="*{prenotazione.oraFine}"></span>
                 </div>
-               <div style="margin-top: 20px;">
+               <div style="margin-top: 20px; padding-left: 5px;">
                    <b> Campi disponibili: </b>
                     <select name="campo" roleId="campo" id="campo" th:field="*{prenotazione.campo}">
                         <option value="">---Campo---</option>
                         <option th:each="campo : ${campi}" th:value="${campo.id}" th:text="${campo.numeroCampo} +' '+ ${campo.sport}">
+                        </option>
+                    </select>
+                    <b> Maestri disponibili: </b>
+                    <select name="maestro" roleId="maestro" id="maestro" th:field="*{prenotazione.maestro}">
+                        <option value="">---Maestro---</option>
+                        <option th:each="maestro : ${maestri}" th:value="${maestro.id}" th:text="${maestro.nome} +' '+ ${maestro.cognome} +' '+ ${maestro.sportInsegnato}">
                         </option>
                     </select>
                 </div>

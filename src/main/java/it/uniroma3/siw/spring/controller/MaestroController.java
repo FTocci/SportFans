@@ -56,12 +56,13 @@ public class MaestroController {
     									Model model, BindingResult bindingResult) {
     	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     	Credentials credentials = maestroService.getCredentialsService().getCredentials(userDetails.getUsername());
-    	
+    	model.addAttribute("credentials", credentials);
     	this.maestroValidator.validate(maestro, bindingResult);
         if (!bindingResult.hasErrors()) {
         	maestro.setCircolo(credentials.getUser().getCircolo());
         	this.maestroService.inserisci(maestro);
             model.addAttribute("maestri", this.maestroService.tutti());
+            model.addAttribute("utente", credentials.getUser());
             return "home2.html";
         }
         return "maestroForm.html";

@@ -35,6 +35,7 @@ public class PrenotazioneController {
     	Circolo c=credentials.getUser().getCircolo();
     	
     	model.addAttribute("campi", prenotazioneService.getCampoService().filtraPerCircolo(c));
+    	model.addAttribute("maestri", prenotazioneService.getMaestroService().filtraPerCircolo(c));
         return "prenotazioneForm.html";
     }
 

@@ -1,5 +1,6 @@
 package it.uniroma3.siw.spring.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,6 +9,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import it.uniroma3.siw.spring.model.Circolo;
 import it.uniroma3.siw.spring.model.Maestro;
 import it.uniroma3.siw.spring.repository.MaestroRepository;
 
@@ -52,6 +54,17 @@ public class MaestroService {
 		else 
 			return false;
 	}
+	
+	@Transactional
+	public List<Maestro> filtraPerCircolo(Circolo circolo){
+		List<Maestro> maestri = new ArrayList<Maestro>();
+		for(Maestro m: this.tutti()) {
+			if(m.getCircolo().equals(circolo)) {
+				maestri.add(m);
+			}
+		}
+		return maestri;
+	} 
 
 	public CredentialsService getCredentialsService() {
 		return credentialsService;
