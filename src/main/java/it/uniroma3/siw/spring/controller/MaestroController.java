@@ -33,6 +33,9 @@ public class MaestroController {
     public String addMaestro(Model model) {
     	logger.debug("addMaestro");
     	model.addAttribute("maestro", new Maestro());
+    	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    	Credentials credentials = maestroService.getCredentialsService().getCredentials(userDetails.getUsername());
+    	model.addAttribute("credentials", credentials);
         return "maestroForm.html";
     }
 

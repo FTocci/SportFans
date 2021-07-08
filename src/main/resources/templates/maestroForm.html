@@ -8,8 +8,9 @@
 <body>
     <header></header>
     <div style="text-align: center; margin-top: 5%;">
+        <span th:if="${credentials.role == 'ADMIN'}">
         <form th:action="@{/maestro}" method="POST">
-            <h4>Registrazione</h4>
+            <h4>Aggiungi Maestro</h4>
             <section>
                 <div class="form-group">
                     <input type="text" required th:field="*{maestro.nome}" placeholder="Nome">
@@ -39,6 +40,8 @@
                 </span>
             </section>
         </form>
+        </span>
+        <span th:if="${credentials.role == 'DEFAULT'}">NON HAI I PERMESSI PER ACCEDERE ALLA RISORSA</span>
     </div>
     <footer></footer>
 </body>
