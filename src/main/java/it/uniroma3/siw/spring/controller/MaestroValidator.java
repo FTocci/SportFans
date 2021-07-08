@@ -26,7 +26,8 @@ public class MaestroValidator implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "cognome", "required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "recapito", "required");		
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "prezzoOraLezione", "required");
-
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "sportInsegnato", "required");
+		
 		if (!errors.hasErrors()) {
 			logger.debug("confermato: valori non nulli");
 			if (this.maestroService.alreadyExists((Maestro)o)) {

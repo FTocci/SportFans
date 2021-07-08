@@ -29,6 +29,9 @@ public class Maestro {
 	private String recapito;
 	
 	@Column(nullable=false)
+	private String sportInsegnato;
+	
+	@Column(nullable=false)
 	private int prezzoOraLezione;
 	
 	@ManyToOne
@@ -87,6 +90,16 @@ public class Maestro {
 
 	public long getId() {
 		return id;
+	}
+	
+	
+
+	public String getSportInsegnato() {
+		return sportInsegnato;
+	}
+
+	public void setSportInsegnato(String sportInsegnato) {
+		this.sportInsegnato = sportInsegnato;
 	}
 
 	@Override

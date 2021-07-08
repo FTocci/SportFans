@@ -17,6 +17,9 @@ public class MaestroService {
 	@Autowired
 	private MaestroRepository maestroRepository; 
 	
+	@Autowired
+	private CredentialsService credentialsService;
+	
 	@Transactional
 	public Maestro inserisci(Maestro maestro) {
 		return maestroRepository.save(maestro);
@@ -49,4 +52,14 @@ public class MaestroService {
 		else 
 			return false;
 	}
+
+	public CredentialsService getCredentialsService() {
+		return credentialsService;
+	}
+
+	public void setCredentialsService(CredentialsService credentialsService) {
+		this.credentialsService = credentialsService;
+	}
+	
+	
 }

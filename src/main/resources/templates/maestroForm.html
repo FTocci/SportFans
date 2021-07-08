@@ -27,6 +27,10 @@
                     <input type="text" th:field="*{maestro.prezzoOraLezione}" placeholder="PrezzoOraLezione">
                     <span th:if="${#fields.hasErrors('maestro.prezzoOraLezione')}" th:errors="*{maestro.prezzoOraLezione}"></span>
                 </div>
+                 <div class="form-group">
+                    <input type="text" th:field="*{maestro.sportInsegnato}" placeholder="sportInsegnato">
+                    <span th:if="${#fields.hasErrors('maestro.sportInsegnato')}" th:errors="*{maestro.sportInsegnato}"></span>
+                </div>
 
                 <span style="margin-top:10px;">
                     <button style="border-radius: 10px 10px 10px 10px; width:100px; height: 40px;" type="submit">
