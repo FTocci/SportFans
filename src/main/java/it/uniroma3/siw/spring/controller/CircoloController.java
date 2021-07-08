@@ -30,6 +30,9 @@ public class CircoloController {
     @RequestMapping(value="/addCircolo", method = RequestMethod.GET)
     public String addCircolo(Model model) {
     	model.addAttribute("circolo", new Circolo());
+    	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    	Credentials credentials = circoloService.getCredentialsService().getCredentials(userDetails.getUsername());
+    	model.addAttribute("credentials", credentials);
         return "circoloForm.html";
     }
 

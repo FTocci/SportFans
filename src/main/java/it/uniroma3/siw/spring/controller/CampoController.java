@@ -29,6 +29,9 @@ public class CampoController {
     @RequestMapping(value="/addCampo", method = RequestMethod.GET)
     public String addCampo(Model model) {
     	model.addAttribute("campo", new Campo());
+    	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    	Credentials credentials = campoService.getCredentialsService().getCredentials(userDetails.getUsername());
+    	model.addAttribute("credentials", credentials);
         return "campoForm.html";
     }
 
