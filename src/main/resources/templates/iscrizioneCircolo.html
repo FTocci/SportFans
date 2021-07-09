@@ -13,23 +13,23 @@
         <img style="height: 75px;" src="/images/logo.png"></img>
     </div>
     <div style="text-align: center; font-size: 30px;">
-        <div style="margin-top: 20px; font-weight: bold; margin-right: 90px;">
+        <div style="margin-top: 20px; font-weight: bold;">
             <p>Iscrizione ad un circolo</p>
         </div>
 
 
         <div style="margin-top: 50 px; height: 300px;">
             <form th:action="@{/selezionaCircolo}" method="POST" th:object="${circolo}">
-                <select style="width: 35%; margin-left: 30%; text-align: center; " class="form-select" multiple
+                <select style="width: 35%; margin-left: 33%; text-align: center; " class="form-select" multiple
                     aria-label="multiple select example" name="circolo" roleId="circolo" id="circolo"
                     th:field="*{circolo}">
                     <option th:each="circolo : ${circoli}" th:value="${circolo.id}" th:text="${circolo.nomeCircolo}">
                     </option>
                 </select>
-                <div style="margin-top: 50px; margin-right: 90px;"><button type="submit" class="btn btn-secondary"> Iscriviti </button></div>
+                <div style="margin-top: 35px; "><button style="font-size: 15px;border-radius: 10px 10px 10px 10px; width:100px; height: 40px; margin-top: 30px;"> Iscriviti </button></div>
             </form>
         </div>
-        <a href="/default"><button type="submit" class="btn btn-secondary">Home</button></a>
+        <a href="/default"><button style="font-size: 15px;border-radius: 10px 10px 10px 10px; width:100px; height: 40px; margin-top: 20px;">Home</button></a>
     </div>
 </body>
 

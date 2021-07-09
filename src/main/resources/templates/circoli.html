@@ -16,7 +16,7 @@
 			<h4>Qui troverai una lista di circoli di cui potresti diventare un membro:</h4>
 		</div>
 		<section>
-			<div  style="font-weight: bold; margin-bottom: 15px; background-color: gray;  margin:0 auto; width: 1000px;" th:each="circolo : ${circoli}">
+			<div  style="font-weight: bold; margin-bottom: 15px; background-color: lightgray;  margin:0 auto; width: 800px;" th:each="circolo : ${circoli}">
 				Nome: <span th:text="*{circolo.nomeCircolo}">qui-va-titolo</span><br>
 				Indirizzo: <span th:text="*{circolo.indirizzo}">qui-va-indirizzo</span><br>
 				Email: <span th:text="*{circolo.email}">qui-va-email</span><br>
@@ -27,7 +27,7 @@
 		<div>
 			<span th:if="${credentials.role == 'ADMIN'}"><a href="/addCircolo"><button>+</button></a></span>
 		</div>
-		<a href="/default"><button type="submit" class="btn btn-secondary" style="margin-top: 80px;">Home</button></a>
+		<a href="/default"><button style="border-radius: 10px 10px 10px 10px; width:100px; height: 40px; margin-top: 30px;">Home</button></a>
 	</div>
 
 </body>
