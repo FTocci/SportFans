@@ -15,20 +15,20 @@
 			<p>Le tue prenotazioni</p>
 		</div>
 		<section>
-			<div style="font-weight: bold; margin-bottom: 15px; background-color: gray; margin:0 auto; width: 1000px;" th:each="prenotazione : ${prenotazioni}">
+			<div th:id="${prenotazione.id}" style="font-weight: bold; margin-bottom: 15px; background-color: gray; margin:0 auto; width: 1000px;" th:each="prenotazione : ${prenotazioni}">
 				Circolo: <span th:text="*{prenotazione.campo.circolo.nomeCircolo}">qui-va-nomeCircolo</span><br>
+				Id: <span th:text="*{prenotazione.id}">qui-va-id</span><br>
 				Data: <span th:text="${#temporals.format(prenotazione.data,'dd/MM/yyyy')}">qui-va-numeroCampo</span><br>
 				Orario di inizio: <span th:text="*{prenotazione.oraInizio}">qui-va-terreno</span><br>
 				Orario di fine: <span th:text="*{prenotazione.oraFine}">qui-va-sport</span><br>
 				Campo: <span th:text="*{prenotazione.campo.numeroCampo}+' '+*{prenotazione.campo.sport}">qui-va-campo</span><br>
-				Maestro: <span th:if="${prenotazione.maestro!='NULL'}" th:text="*{prenotazione.maestro?.nome}+' '+*{prenotazione.maestro?.cognome}">qui-va-maestro</span><br>
+				Maestro: <span th:if="${prenotazione.maestro?.nome != null}" th:text="*{prenotazione.maestro?.nome}+' '+*{prenotazione.maestro?.cognome}">qui-va-maestro</span><br>
+				<a href="/delete"><button type="submit" class="btn btn-secondary" style="border-radius: 10px 10px 10px 10px; width:100px; height: 40px;">Delete</button></a>
 				<p></p>
 			</div>
 		</section> 
-		<div>
-			<a href="/addPrenotazione"><button>+</button></a>
-			<a href="/default"><button type="submit" class="btn btn-secondary" style="border-radius: 10px 10px 10px 10px; width:100px; height: 40px; margin-top: 80px;">Home</button></a>
-		</div>
+		<a href="/addPrenotazione"><button>+</button></a><br>
+		<a href="/default"><button type="submit" class="btn btn-secondary" style="border-radius: 10px 10px 10px 10px; width:100px; height: 40px; margin-top: 80px;">Home</button></a><br>
 	</div>
 
 </body>
