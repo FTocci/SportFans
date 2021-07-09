@@ -6,10 +6,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.siw.spring.model.Circolo;
 import it.uniroma3.siw.spring.model.Credentials;
@@ -52,6 +56,7 @@ public class PrenotazioneController {
         	Credentials credentials = prenotazioneService.getCredentialsService().getCredentials(userDetails.getUsername());
     		model.addAttribute("prenotazioni", this.prenotazioneService.prenotazioniPerUser(credentials.getUser()));
         	model.addAttribute("credentials", credentials);
+        	model.addAttribute("prenotazione", new Prenotazione());
     		return "prenotazioni.html";
     }
     
@@ -76,11 +81,16 @@ public class PrenotazioneController {
         return "prenotazioneErrore.html";
     }
     
-    @RequestMapping(value = "/delete", method = RequestMethod.POST)
-    public String deletePrenotazione(@ModelAttribute("prenotazione") Prenotazione prenotazione,Model model) {
-    	prenotazioneService.eliminaPrenotazione(prenotazione);
-		return "prenotazioni.html";
+    @RequestMapping(value = "/delete",method=RequestMethod.POST)
+    public String deletePrenotazione(@RequestParam("prenotazione") Long idPrenotazione,Model model) {
+    	Prenotazione p=prenotazioneService.prenotazionePerId(idPrenotazione);
+    	prenotazioneService.eliminaPrenotazione(p);
     	
+    	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    	Credentials credentials = prenotazioneService.getCredentialsService().getCredentials(userDetails.getUsername());
+		model.addAttribute("prenotazioni", this.prenotazioneService.prenotazioniPerUser(credentials.getUser()));
+    	model.addAttribute("credentials", credentials);    	
+		return "prenotazioni.html";
     }
      
 }
