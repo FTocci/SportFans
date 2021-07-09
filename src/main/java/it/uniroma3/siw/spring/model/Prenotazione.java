@@ -11,6 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 @Entity
 @NamedQuery(name = "findAllPrenotazione", query = "SELECT a FROM Prenotazione a")
@@ -75,6 +76,8 @@ public class Prenotazione {
 	public void setCampo(Campo campo) {
 		this.campo = campo;
 	}
+	
+	@ModelAttribute("prenotazione.id")
 	public long getId() {
 		return id;
 	}

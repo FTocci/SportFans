@@ -25,6 +25,7 @@ public class PrenotazioneController {
     @Autowired
     private PrenotazioneValidator prenotazioneValidator;
     
+    
 
     @RequestMapping(value="/addPrenotazione", method = RequestMethod.GET)
     public String addPrenotazione(Model model) {
@@ -73,6 +74,13 @@ public class PrenotazioneController {
         else
             model.addAttribute("errore", "il campo risulta essere occupato");
         return "prenotazioneErrore.html";
+    }
+    
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    public String deletePrenotazione(@ModelAttribute("prenotazione") Prenotazione prenotazione,Model model) {
+    	prenotazioneService.eliminaPrenotazione(prenotazione);
+		return "prenotazioni.html";
+    	
     }
      
 }

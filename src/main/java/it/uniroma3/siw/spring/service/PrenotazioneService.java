@@ -65,6 +65,12 @@ public class PrenotazioneService {
 		else 
 			return false;
 	}
+	
+	@Transactional
+	public void eliminaPrenotazione(Prenotazione p) {
+		prenotazioneRepository.delete(p);
+	}
+	
 
 	public CampoService getCampoService() {
 		return campoService;
