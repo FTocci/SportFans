@@ -30,8 +30,8 @@ public class CampoService {
 	}
 	
 	@Transactional
-	public List<Campo> campoPerNomeAndNumero(String nome, String numeroCampo) {
-		return campoRepository.findByNumeroCampoAndSport(nome, numeroCampo);
+	public List<Campo> campoPerNomeAndNumero(String nome, String numeroCampo,Circolo c) {
+		return campoRepository.findByNumeroCampoAndSportAndCircolo(nome, numeroCampo,c);
 	}
 
 	@Transactional
@@ -50,7 +50,7 @@ public class CampoService {
 
 	@Transactional
 	public boolean alreadyExists(Campo campo) {
-		List<Campo> campi = this.campoRepository.findByNumeroCampoAndSport(campo.getNumeroCampo(), campo.getSport());
+		List<Campo> campi = this.campoRepository.findByNumeroCampoAndSportAndCircolo(campo.getNumeroCampo(), campo.getSport(),campo.getCircolo());
 		if (campi.size() > 0)
 			return true;
 		else 
