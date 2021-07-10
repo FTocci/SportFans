@@ -9,6 +9,8 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import it.uniroma3.siw.spring.model.Campo;
+import it.uniroma3.siw.spring.model.Maestro;
 import it.uniroma3.siw.spring.model.Prenotazione;
 import it.uniroma3.siw.spring.model.User;
 import it.uniroma3.siw.spring.repository.PrenotazioneRepository;
@@ -56,6 +58,28 @@ public class PrenotazioneService {
 		}
 		return prenotazioniUtente;
 	}
+	
+	@Transactional
+	public List<Prenotazione> prenotazioniPerCampo(Campo campo) {
+		List<Prenotazione> prenotazioniUtente = new ArrayList<Prenotazione>();
+		for(Prenotazione p: this.tutti()) {
+			if(p.getCampo().equals(campo))
+				prenotazioniUtente.add(p);
+		}
+		return prenotazioniUtente;
+	}
+	
+	@Transactional
+	public List<Prenotazione> prenotazioniPerMaestro(Maestro maestro) {
+		List<Prenotazione> prenotazioniUtente = new ArrayList<Prenotazione>();
+		for(Prenotazione p: this.tutti()) {
+			if(p.getMaestro()!=null)
+				if(p.getMaestro().equals(maestro))
+					prenotazioniUtente.add(p);
+		}
+		return prenotazioniUtente;
+	}
+	
 	
 	@Transactional
 	public boolean alreadyExists(Prenotazione prenotazione) {

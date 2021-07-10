@@ -75,6 +75,13 @@ public class PrenotazioneController {
             model.addAttribute("errore", "Dati inseriti non validi");
         else
             model.addAttribute("errore", "il campo o il maestro risultano essere occupati");
+        
+        if(prenotazione.getMaestro()!=null)
+        	model.addAttribute("maestroOccupato", this.prenotazioneService.prenotazioniPerMaestro(prenotazione.getMaestro()));
+        else
+        	model.addAttribute("maestroOccupato", null);
+
+        model.addAttribute("campoOccupato", this.prenotazioneService.prenotazioniPerCampo(prenotazione.getCampo()));
         return "prenotazioneErrore.html";
     }
     
